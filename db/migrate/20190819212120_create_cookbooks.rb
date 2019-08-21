@@ -3,6 +3,7 @@ class CreateCookbooks < ActiveRecord::Migration[5.2]
     create_table :cookbooks do |t|
       t.string :title
       t.string :image_url
+      t.integer :author_id
     end
   end
 end

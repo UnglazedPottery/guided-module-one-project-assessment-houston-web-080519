@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_08_19_212132) do
   create_table "cookbooks", force: :cascade do |t|
     t.string "title"
     t.string "image_url"
+    t.integer "author_id"
   end
 
   create_table "recipes", force: :cascade do |t|
