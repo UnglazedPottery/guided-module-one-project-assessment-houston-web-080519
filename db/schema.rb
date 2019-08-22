@@ -12,27 +12,27 @@
 
 ActiveRecord::Schema.define(version: 2019_08_19_212132) do
 
-  create_table "authors", force: :cascade do |t|
-    t.string "name"
-    t.string "password"
-    t.string "image_url"
-    t.string "about_me"
-  end
-
   create_table "cookbooks", force: :cascade do |t|
     t.string "title"
     t.string "image_url"
-    t.integer "author_id"
+    t.integer "user_id"
   end
 
   create_table "recipes", force: :cascade do |t|
     t.string "name"
-    t.integer "author_id"
-    t.integer "cookbook_id"
     t.integer "cook_time"
     t.string "image_url"
     t.string "ingredients"
     t.string "directions"
+    t.integer "user_id"
+    t.integer "cookbook_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "password"
+    t.string "image_url"
+    t.string "about_me"
   end
 
 end

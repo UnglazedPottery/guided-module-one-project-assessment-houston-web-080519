@@ -23,7 +23,7 @@ def login_page
             "Exit"
         ])
         if( choice == "Sign In")
-            current_user = Author.where({
+            current_user = User.where({
                 name: prompt.ask('What is your name?'),
                 password: prompt.ask('What is your password?')
             }).first
@@ -31,9 +31,11 @@ def login_page
         if( choice == "Create Account")
             name = prompt.ask('What is your name?')
             password = prompt.ask('What is your password?')
-            current_user = Author.create({
+            about = prompt.ask('Write a description for you profile: ')
+            current_user = User.create({
                 name: name,
-                password: password
+                password: password,
+                about_me: about
             })
         end
         if( choice == "Exit")

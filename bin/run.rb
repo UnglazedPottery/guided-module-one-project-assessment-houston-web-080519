@@ -3,8 +3,8 @@ require_relative '../config/environment'
 # puts "hello"
 $current_user = login_page
 # puts current_user.name
-# question = "blah?"
-# list_cookbooks(question)
 
-
-make_recipe
+# make_cookbook
+# make_recipe
+# display_cookbooks
+view_profile
