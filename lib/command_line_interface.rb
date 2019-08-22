@@ -54,6 +54,7 @@ def menu_options
         choice = prompt.select("Select from menu: ", [
             "Make Cookbook",
             "Make Recipe",
+            "Search for a Recipe",
             "Browse Everyone's Recipes",
             "See my Cookbooks",
             "View Profile",
@@ -66,6 +67,10 @@ def menu_options
 
         if choice == "Make Recipe"
             make_recipe
+        end
+
+        if choice == "Search for a Recipe"
+            search_for_recipe
         end
 
         if choice == "Browse Everyone's Recipes"

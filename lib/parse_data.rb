@@ -81,6 +81,18 @@ def display_cookbooks
     puts "Directions: " + this_recipe.directions
     puts "Cook time: " + this_recipe.cook_time.to_s
     puts ""
+
+    # prompt = TTY::Prompt.new
+    delete = prompt.select("Would you like to delete this recipe?", ["Yes", "No"])
+    if(delete == "Yes")
+        puts this_recipe.name + " is deleted. New changes will be updated after exiting the program."
+        this_recipe.destroy
+        puts ""
+    end
+    if(delete == "No")
+        menu_options
+    end
+
 end
 
 def view_profile
@@ -107,5 +119,18 @@ def view_profile
     end
 end
 
+def search_for_recipe
+    prompt = TTY::Prompt.new
+    name = prompt.ask('Enter the name of the recipe you want to search for: ')
+    x = Recipe.all.find do |r|
+        r.name == name
+    end
+    puts ""
+    puts "Recipe: " + x.name
+    puts "Ingredients: " + x.ingredients
+    puts "Directions: " + x.directions
+    puts "Cook time: " + x.cook_time
+    puts ""
+end
 
 
