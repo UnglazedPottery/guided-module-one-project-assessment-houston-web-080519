@@ -4,7 +4,7 @@ ActiveRecord::Base.logger = nil
 
 def run
     welcome
-    login_page
+    $current_user = login_page
     menu_options
 end
 
@@ -17,6 +17,7 @@ def login_page
     prompt = TTY::Prompt.new
     current_user = nil
     while current_user == nil
+        puts ""
         choice = prompt.select("Please choose from the menu:", [
             "Sign In",
             "Create Account",
@@ -27,6 +28,7 @@ def login_page
                 name: prompt.ask('What is your name?'),
                 password: prompt.ask('What is your password?')
             }).first
+            puts ""
         end
         if( choice == "Create Account")
             name = prompt.ask('What is your name?')
@@ -37,6 +39,7 @@ def login_page
                 password: password,
                 about_me: about
             })
+            puts ""
         end
         if( choice == "Exit")
             exit
@@ -45,40 +48,41 @@ def login_page
     current_user
 end
 
-# def menu_options
-#     while true
-#         choice = prompt.select("Enter number from menu: ", [
-#             "1) Make Cookbook",
-#             "2) Make Recipe",
-#             "3) Search for Recipe",
-#             "4) See my Cookbooks",
-#             "5) View Profile",
-#             "6) Exit"
-#         ])
+def menu_options
+    while true
+        prompt = TTY::Prompt.new
+        choice = prompt.select("Select from menu: ", [
+            "Make Cookbook",
+            "Make Recipe",
+            "Browse Everyone's Recipes",
+            "See my Cookbooks",
+            "View Profile",
+            "Exit"
+        ])
 
-#         if choice == 1
-#             make_cookbook
-#         end
+        if choice == "Make Cookbook"
+            make_cookbook
+        end
 
-#         if choice == 2
-#             make_recipe
-#         end
+        if choice == "Make Recipe"
+            make_recipe
+        end
 
-#         if choice == 3
-#             search_for_recipe
-#         end
+        if choice == "Browse Everyone's Recipes"
+            browse_recipes
+        end
 
-#         if choice == 4
-#             display_cookbooks
-#         end
+        if choice == "See my Cookbooks"
+            display_cookbooks
+        end
 
-#         if choice == 5
-#             view_profile
-#         end
+        if choice == "View Profile"
+            view_profile
+        end
 
-#         if choice == 6
-#             break 
-#         end
-#     end
-# end
+        if choice == "Exit"
+            exit
+        end
+    end
+end
 
