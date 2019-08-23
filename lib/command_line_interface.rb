@@ -9,8 +9,9 @@ def run
 end
 
 def welcome
-    x = Artii::Base.new
-    puts Rainbow(x.asciify("Welcome   to   CookBookBuilder!")).green
+    prompt = TTY::Prompt.new
+    x = Artii::Base.new :font => 'slant'
+    prompt.say(x.asciify("CookBookBuilder!"))
 end
 
 def login_page
@@ -26,14 +27,14 @@ def login_page
         if( choice == "Sign In")
             current_user = User.where({
                 name: prompt.ask('What is your name?'),
-                password: prompt.ask('What is your password?')
+                password: prompt.mask('What is your password?')
             }).first
             puts ""
         end
         if( choice == "Create Account")
             name = prompt.ask('What is your name?')
             password = prompt.ask('What is your password?')
-            about = prompt.ask('Write a description for you profile: ')
+            about = prompt.ask('Write a description for your profile: ')
             current_user = User.create({
                 name: name,
                 password: password,

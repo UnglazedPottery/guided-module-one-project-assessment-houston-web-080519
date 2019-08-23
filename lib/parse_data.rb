@@ -64,6 +64,9 @@ def display_cookbooks
     end
     myCookbooks.merge!(exit: "Exit")
     this_cookbook = prompt.select("Choose a cookbook to view it's recipes.", myCookbooks)  
+    if(this_cookbook == "Exit")
+        menu_options
+    end
 
     myRecipes = {}
     this_cookbook.recipes.each do |r|
